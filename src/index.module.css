@@ -1,0 +1,13 @@
+.list {
+  display: flex;
+  list-style: none;
+}
+
+.list > .li {
+  margin: 0 4px;
+}
+
+.button {
+  padding: 2px 4px;
+  border: 1px solid #444;
+}
