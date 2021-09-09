@@ -45,10 +45,10 @@ export const Pagination: React.FC<PaginationProps> = ({ total, lengthPerPage, on
     <ol className={style['list']}>
       {buttonType.map((buttonType) => {
         if (buttonType === 'current') {
-          return <li className={style['current']}>{currentPage} / {pageLength}</li>
+          return <li key={buttonType} className={style['current']}>{currentPage} / {pageLength}</li>
         }
         return (
-          <li className={style['li']}>
+          <li key={buttonType} className={style['li']}>
             <PaginationButton
               buttonType={buttonType as ButtonType}
               pageLength={pageLength}

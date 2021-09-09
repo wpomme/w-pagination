@@ -18,11 +18,13 @@ export const App: React.FC<AppProps> = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(1)
   return (
     <>
-      {paginationFilter(total, lengthPerPage, currentIndex, num).map((num, index) => (
-        <li key={'li' + index}>
-          <Item num={num} />
-        </li>
-      ))}
+      <ul>
+        {paginationFilter(total, lengthPerPage, currentIndex, num).map((num, index) => (
+          <li key={'li' + index}>
+            <Item num={num} />
+          </li>
+        ))}
+      </ul>
       <Pagination
         total={total}
         lengthPerPage={lengthPerPage}
