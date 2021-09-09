@@ -10,20 +10,22 @@ type ItemProps = {
 }
 
 const Item: React.FC<ItemProps> = ({ num }) => <div>test {num}</div>
-const num = [...Array(100)].map((i) => i)
+const total = 100
+const lengthPerPage=10
+const num = [...Array(total)].map((_, i) => i + 1)
 
 export const App: React.FC<AppProps> = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(1)
   return (
     <>
-      {paginationFilter(100, 10, currentIndex, num).map((num, index) => (
+      {paginationFilter(total, lengthPerPage, currentIndex, num).map((num, index) => (
         <li key={'li' + index}>
-          <Item {...num} />
+          <Item num={num} />
         </li>
       ))}
       <Pagination
-        total={100}
-        lengthPerPage={10}
+        total={total}
+        lengthPerPage={lengthPerPage}
         onChange={setCurrentIndex}
       />
     </>

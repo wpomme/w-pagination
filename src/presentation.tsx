@@ -15,15 +15,15 @@ export type ButtonType = typeof buttonType[number]
 type PaginationButtonProps = {
   buttonType: ButtonType
   pageLength: number
-  setCurrentPage: React.Dispatch<{buttonType: ButtonType, pageLength: number}>
+  dispatchCurrentPage: React.Dispatch<{buttonType: ButtonType, pageLength: number}>
 }
 
-const PaginationButton: React.FC<PaginationButtonProps> = ({ buttonType, pageLength, setCurrentPage }) => {
+const PaginationButton: React.FC<PaginationButtonProps> = ({ buttonType, pageLength, dispatchCurrentPage }) => {
   return (
     <button
       className={style['button']}
       onClick={() => {
-        setCurrentPage({buttonType, pageLength})
+        dispatchCurrentPage({buttonType, pageLength})
       }}
     >
       {buttonType}
@@ -33,7 +33,7 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({ buttonType, pageLen
 
 // Presentation.tsxとcomponent.tsxに分離する
 export const Pagination: React.FC<PaginationProps> = ({ total, lengthPerPage, onChange }) => {
-  const [currentPage, setCurrentPage] = React.useReducer(paginationReducer, 1)
+  const [currentPage, dispatchCurrentPage] = React.useReducer(paginationReducer, 1)
   React.useEffect(() => {
     onChange(currentPage)
   }, [currentPage, onChange])
@@ -52,7 +52,7 @@ export const Pagination: React.FC<PaginationProps> = ({ total, lengthPerPage, on
             <PaginationButton
               buttonType={buttonType as ButtonType}
               pageLength={pageLength}
-              setCurrentPage={setCurrentPage}
+              dispatchCurrentPage={dispatchCurrentPage}
             />
           </li>
         )
