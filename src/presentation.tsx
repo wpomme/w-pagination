@@ -1,6 +1,7 @@
 import * as React from 'react'
 import style from './index.module.css'
 import { paginationReducer } from './reducer'
+import { range } from 'remeda'
 
 export type PaginationProps = {
   total: number
@@ -31,13 +32,24 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({ buttonType, pageLen
   );
 }
 
+const displayLength = 5
+
 // Presentation.tsxとcomponent.tsxに分離する
 export const Pagination: React.FC<PaginationProps> = ({ total, lengthPerPage, onChange }) => {
   const [currentPage, dispatchCurrentPage] = React.useReducer(paginationReducer, 1)
+  const pageLength = Math.ceil(total / lengthPerPage)
+  const [selectableIndex, setSelectableIndex] = React.useState<number[]>([...range(1, displayLength + 1), pageLength])
   React.useEffect(() => {
     onChange(currentPage)
+    if (currentPage < displayLength) {
+      setSelectableIndex([...range(1, displayLength + 1), pageLength])
+    } else if (currentPage >= displayLength && currentPage <= pageLength - displayLength + 1) {
+      setSelectableIndex([1, ...range(currentPage - 2, currentPage + displayLength - 2), pageLength])
+    } else if (currentPage >= pageLength - displayLength + 1) {
+      setSelectableIndex([1, ...range(pageLength - displayLength + 1, pageLength + 1)])
+    }
   }, [currentPage, onChange])
-  const pageLength = Math.ceil(total / lengthPerPage)
+  console.log(selectableIndex)
   if (pageLength === 0) {
     return <></>
   }

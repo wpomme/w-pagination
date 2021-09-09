@@ -10,7 +10,7 @@ type ItemProps = {
 }
 
 const Item: React.FC<ItemProps> = ({ num }) => <div>test {num}</div>
-const total = 100
+const total = 150
 const lengthPerPage=10
 const num = [...Array(total)].map((_, i) => i + 1)
 
