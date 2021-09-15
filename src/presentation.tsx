@@ -9,7 +9,7 @@ export type PaginationProps = {
   onChange: (n: number) => void
 }
 
-const buttonType = ['first', 'prev', 'current', 'next', 'last'] as const
+const buttonType = ['first', 'previous', 'current', 'next', 'last', 'number'] as const
 
 export type ButtonType = typeof buttonType[number]
 
@@ -27,14 +27,14 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({ buttonType, pageLen
         dispatchCurrentPage({buttonType, pageLength})
       }}
     >
-      {buttonType}
+      {pageLength}
     </button>
   );
 }
 
-const displayLength = 5
+const displayLength = 7
+const threePointLeader = 0
 
-// Presentation.tsxとcomponent.tsxに分離する
 export const Pagination: React.FC<PaginationProps> = ({ total, lengthPerPage, onChange }) => {
   const [currentPage, dispatchCurrentPage] = React.useReducer(paginationReducer, 1)
   const pageLength = Math.ceil(total / lengthPerPage)
@@ -42,28 +42,31 @@ export const Pagination: React.FC<PaginationProps> = ({ total, lengthPerPage, on
   React.useEffect(() => {
     onChange(currentPage)
     if (currentPage < displayLength) {
-      setSelectableIndex([...range(1, displayLength + 1), pageLength])
+      setSelectableIndex([...range(1, displayLength + 1), threePointLeader, pageLength])
     } else if (currentPage >= displayLength && currentPage <= pageLength - displayLength + 1) {
-      setSelectableIndex([1, ...range(currentPage - 2, currentPage + displayLength - 2), pageLength])
+      setSelectableIndex([1, threePointLeader, ...range(currentPage - 2, currentPage + displayLength - 4), threePointLeader, pageLength])
     } else if (currentPage >= pageLength - displayLength + 1) {
-      setSelectableIndex([1, ...range(pageLength - displayLength + 1, pageLength + 1)])
+      setSelectableIndex([1, threePointLeader, ...range(pageLength - displayLength + 1, pageLength + 1)])
     }
   }, [currentPage, onChange])
-  console.log(selectableIndex)
   if (pageLength === 0) {
     return <></>
   }
   return (
     <ol className={style['list']}>
-      {buttonType.map((buttonType) => {
-        if (buttonType === 'current') {
-          return <li key={buttonType} className={style['current']}>{currentPage} / {pageLength}</li>
+      {selectableIndex.map((num, index) => {
+        if (num === threePointLeader) {
+          return (
+            <li key={`${num}-${index}`} className={style['li']}>
+              <span>...</span>
+            </li>
+          )
         }
         return (
-          <li key={buttonType} className={style['li']}>
+          <li key={num} className={style['li']}>
             <PaginationButton
-              buttonType={buttonType as ButtonType}
-              pageLength={pageLength}
+              buttonType={'number' as ButtonType}
+              pageLength={num}
               dispatchCurrentPage={dispatchCurrentPage}
             />
           </li>
