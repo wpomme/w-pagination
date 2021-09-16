@@ -1,20 +1,23 @@
 import { ButtonType } from "./presentation"
 
-export const paginationReducer: React.Reducer<number, { buttonType: ButtonType, pageLength: number}> = (state, action) => {
-  const { buttonType, pageLength } = action
-  if (buttonType === "first") {
+export type PaginationReducerState = number
+export type PaginationReducerAction = { type: ButtonType, payload: PaginationReducerState}
+
+export const paginationReducer: React.Reducer<PaginationReducerState, PaginationReducerAction> = (state, action) => {
+  const { type, payload } = action
+  if (type === "first") {
     return 1
   }
-  if (buttonType === "previous") {
+  if (type === "previous") {
     return state === 1 ? 1 : state - 1
   }
-  if (buttonType === "next") {
-    return state === pageLength ? pageLength : state + 1
+  if (type === "next") {
+    return state === payload ? payload : state + 1
   }
-  if (buttonType === "number") {
-    return pageLength
+  if (type === "number") {
+    return payload
   }
-  // buttonType === 'last'
-  return pageLength
+  // type === 'last'
+  return payload
 }
 

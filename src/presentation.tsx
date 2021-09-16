@@ -1,6 +1,6 @@
 import * as React from "react"
 import style from "./index.module.css"
-import { paginationReducer } from "./reducer"
+import { paginationReducer, PaginationReducerAction } from "./reducer"
 import { range } from "remeda"
 
 export type PaginationProps = {
@@ -15,19 +15,19 @@ export type ButtonType = typeof buttonType[number]
 
 type PaginationButtonProps = {
   buttonType: ButtonType
-  pageLength: number
-  dispatchCurrentPage: React.Dispatch<{buttonType: ButtonType, pageLength: number}>
+  currentPage: number
+  dispatchCurrentPage: React.Dispatch<PaginationReducerAction>
 }
 
-const PaginationButton: React.FC<PaginationButtonProps> = ({ buttonType, pageLength, dispatchCurrentPage }) => {
+const PaginationButton: React.FC<PaginationButtonProps> = ({ buttonType, currentPage, dispatchCurrentPage }) => {
   return (
     <button
       className={style["button"]}
       onClick={() => {
-        dispatchCurrentPage({buttonType, pageLength})
+        dispatchCurrentPage({type: buttonType, payload: currentPage})
       }}
     >
-      {pageLength}
+      {currentPage}
     </button>
   )
 }
@@ -66,7 +66,7 @@ export const Pagination: React.FC<PaginationProps> = ({ total, lengthPerPage, on
           <li key={num} className={style["li"]}>
             <PaginationButton
               buttonType={"number" as ButtonType}
-              pageLength={num}
+              currentPage={num}
               dispatchCurrentPage={dispatchCurrentPage}
             />
           </li>
