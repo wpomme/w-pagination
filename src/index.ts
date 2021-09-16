@@ -1,2 +1,2 @@
-export { Pagination } from './presentation'
-export { paginationFilter } from './functions'
+export { Pagination } from "./presentation"
+export { paginationFilter } from "./functions"

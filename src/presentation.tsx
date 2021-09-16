@@ -1,7 +1,7 @@
-import * as React from 'react'
-import style from './index.module.css'
-import { paginationReducer } from './reducer'
-import { range } from 'remeda'
+import * as React from "react"
+import style from "./index.module.css"
+import { paginationReducer } from "./reducer"
+import { range } from "remeda"
 
 export type PaginationProps = {
   total: number
@@ -9,7 +9,7 @@ export type PaginationProps = {
   onChange: (n: number) => void
 }
 
-const buttonType = ['first', 'previous', 'current', 'next', 'last', 'number'] as const
+const buttonType = ["first", "previous", "current", "next", "last", "number"] as const
 
 export type ButtonType = typeof buttonType[number]
 
@@ -22,14 +22,14 @@ type PaginationButtonProps = {
 const PaginationButton: React.FC<PaginationButtonProps> = ({ buttonType, pageLength, dispatchCurrentPage }) => {
   return (
     <button
-      className={style['button']}
+      className={style["button"]}
       onClick={() => {
         dispatchCurrentPage({buttonType, pageLength})
       }}
     >
       {pageLength}
     </button>
-  );
+  )
 }
 
 const displayLength = 7
@@ -53,19 +53,19 @@ export const Pagination: React.FC<PaginationProps> = ({ total, lengthPerPage, on
     return <></>
   }
   return (
-    <ol className={style['list']}>
+    <ol className={style["list"]}>
       {selectableIndex.map((num, index) => {
         if (num === threePointLeader) {
           return (
-            <li key={`${num}-${index}`} className={style['li']}>
+            <li key={`${num}-${index}`} className={style["li"]}>
               <span>...</span>
             </li>
           )
         }
         return (
-          <li key={num} className={style['li']}>
+          <li key={num} className={style["li"]}>
             <PaginationButton
-              buttonType={'number' as ButtonType}
+              buttonType={"number" as ButtonType}
               pageLength={num}
               dispatchCurrentPage={dispatchCurrentPage}
             />
@@ -73,5 +73,5 @@ export const Pagination: React.FC<PaginationProps> = ({ total, lengthPerPage, on
         )
       })}
     </ol>
-  );
-};
+  )
+}

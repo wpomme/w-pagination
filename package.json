@@ -13,9 +13,13 @@
     "@types/jest": "^27.0.1",
     "@types/react": "^17.0.16",
     "@types/react-dom": "^17.0.9",
+    "@typescript-eslint/eslint-plugin": "^4.31.1",
+    "@typescript-eslint/parser": "^4.31.1",
     "@webpack-cli/generators": "^2.2.0",
     "babel-loader": "^8.2.2",
     "css-loader": "^6.2.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.25.1",
     "html-webpack-plugin": "^5.3.2",
     "jest": "^27.1.1",
     "mini-css-extract-plugin": "^2.2.2",
@@ -36,7 +40,9 @@
     "watch": "webpack --watch",
     "build": "webpack --mode=production --node-env=production",
     "serve": "webpack serve",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint --fix ./src"
   },
   "description": "My webpack project"
 }

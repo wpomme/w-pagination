@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Pagination, paginationFilter } from '../'
+import React, { useState } from "react"
+import { Pagination, paginationFilter } from "../"
 
 type AppProps = {
   className?: string
@@ -20,7 +20,7 @@ export const App: React.FC<AppProps> = () => {
     <>
       <ul>
         {paginationFilter(total, lengthPerPage, currentIndex, num).map((num, index) => (
-          <li key={'li' + index}>
+          <li key={"li" + index}>
             <Item num={num} />
           </li>
         ))}
@@ -31,6 +31,6 @@ export const App: React.FC<AppProps> = () => {
         onChange={setCurrentIndex}
       />
     </>
-  );
+  )
 }
 

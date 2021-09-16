@@ -1,11 +1,11 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
 
-const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require("path")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
-const isProduction = process.env.NODE_ENV == "production";
+const isProduction = process.env.NODE_ENV == "production"
 
-const stylesHandler = MiniCssExtractPlugin.loader;
+const stylesHandler = MiniCssExtractPlugin.loader
 
 const config = {
   entry: "./src/example/index.tsx",
@@ -14,7 +14,7 @@ const config = {
   },
   devServer: {
     static: {
-      directory: path.join(__dirname, 'dist'),
+      directory: path.join(__dirname, "dist"),
     },
     open: true,
     hot: true,
@@ -40,11 +40,11 @@ const config = {
           stylesHandler,
           {
             loader: "css-loader",
-             options: {
-               modules: {
-                 mode: 'local',
-               }
-             }
+            options: {
+              modules: {
+                mode: "local",
+              }
+            }
           }
         ],
       },
@@ -60,13 +60,13 @@ const config = {
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
   },
-};
+}
 
 module.exports = () => {
   if (isProduction) {
-    config.mode = "production";
+    config.mode = "production"
   } else {
-    config.mode = "development";
+    config.mode = "development"
   }
-  return config;
-};
+  return config
+}
