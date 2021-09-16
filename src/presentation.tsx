@@ -17,15 +17,16 @@ type PaginationButtonProps = {
   buttonType: ButtonType
   currentPage: number
   dispatchCurrentPage: React.Dispatch<PaginationReducerAction>
-}
+} & React.ButtonHTMLAttributes<HTMLButtonElement>
 
-const PaginationButton: React.FC<PaginationButtonProps> = ({ buttonType, currentPage, dispatchCurrentPage }) => {
+const PaginationButton: React.FC<PaginationButtonProps> = ({ buttonType, currentPage, dispatchCurrentPage, ...props }) => {
   return (
     <button
       className={style["button"]}
       onClick={() => {
         dispatchCurrentPage({type: buttonType, payload: currentPage})
       }}
+      {...props}
     >
       {currentPage}
     </button>
@@ -68,6 +69,7 @@ export const Pagination: React.FC<PaginationProps> = ({ total, lengthPerPage, on
               buttonType={"number" as ButtonType}
               currentPage={num}
               dispatchCurrentPage={dispatchCurrentPage}
+              disabled={num === currentPage}
             />
           </li>
         )

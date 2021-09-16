@@ -8,6 +8,11 @@
 }
 
 .button {
+  background-color: white;
   padding: 2px 4px;
   border: 1px solid #444;
+}
+
+.button:disabled {
+  border: none;
 }
