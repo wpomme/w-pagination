@@ -1,3 +1,5 @@
+import { SelectableIndex } from "./hooks"
+
 export const calcPageLength = (total: number, lengthPerPage: number): number => {
   //total >= 0, lengthPerPage > 0
   if (lengthPerPage === 0) {
@@ -21,3 +23,19 @@ export const paginationFilter = <T extends unknown>(
   })
 }
 
+export const isDisabledButton = (element: SelectableIndex, currentPage: number, pageLength: number): boolean => {
+  const { index, buttonType } = element
+  if (index === currentPage) {
+    return true
+  }
+  if ((buttonType === "first" || buttonType === "previous") && currentPage === 1) {
+    return true
+  }
+  if ((buttonType === "next" || buttonType === "last") && currentPage === pageLength) {
+    return true
+  }
+  if (buttonType === "threePointLeader") {
+    return true
+  }
+  return false
+}
