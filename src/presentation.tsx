@@ -3,10 +3,7 @@ import style from "./index.module.css"
 import { PaginationReducerAction } from "./reducers"
 import { calcPageLength, isDisabledButton } from "./functions"
 import { usePagination, SelectableIndex } from "./hooks"
-
-export const buttonType = ["first", "previous", "current", "next", "last", "number", "threePointLeader"] as const
-
-export type ButtonType = typeof buttonType[number]
+import { ButtonType } from "./constants"
 
 export type PaginationProps = {
   total: number

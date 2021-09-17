@@ -1,8 +1,7 @@
 import { useState, useReducer, useEffect, Dispatch } from "react"
 import { paginationReducer, PaginationReducerAction } from "./reducers"
 import { range, map as remedaMap } from "remeda"
-import { displayLength } from "./constants"
-import { ButtonType } from "./presentation"
+import { displayLength, ButtonType } from "./constants"
 
 export type SelectableIndex = {
   buttonType: ButtonType

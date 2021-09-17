@@ -1,5 +1,5 @@
 import { Reducer } from "react"
-import { ButtonType } from "./presentation"
+import { ButtonType } from "./constants"
 
 export type PaginationReducerState = number
 export type PaginationReducerAction = { type: ButtonType, payload: PaginationReducerState}
