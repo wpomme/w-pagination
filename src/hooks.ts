@@ -1,5 +1,5 @@
 import React, { useState, useReducer, Dispatch } from "react"
-import { paginationReducer, PaginationReducerAction } from "./reducer"
+import { paginationReducer, PaginationReducerAction } from "./reducers"
 import { range } from "remeda"
 import { displayLength, threePointLeader } from "./constants"
 

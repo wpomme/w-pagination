@@ -1,6 +1,6 @@
 import * as React from "react"
 import style from "./index.module.css"
-import { PaginationReducerAction } from "./reducer"
+import { PaginationReducerAction } from "./reducers"
 import { calcPageLength } from "./functions"
 import { threePointLeader } from "./constants"
 import { usePagination } from "./hooks"

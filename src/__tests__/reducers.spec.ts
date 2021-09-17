@@ -1,4 +1,4 @@
-import { paginationReducer } from "../reducer"
+import { paginationReducer } from "../reducers"
 
 describe("test paginationReducer", () => {
   it("paginationReducer returns 1 when buttonType is \"first\"", () => {
