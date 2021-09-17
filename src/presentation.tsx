@@ -1,8 +1,9 @@
 import * as React from "react"
 import style from "./index.module.css"
-import { paginationReducer, PaginationReducerAction } from "./reducer"
+import { PaginationReducerAction } from "./reducer"
 import { calcPageLength } from "./functions"
-import { range } from "remeda"
+import { threePointLeader } from "./constants"
+import { usePagination } from "./hooks"
 
 export type PaginationProps = {
   total: number
@@ -34,23 +35,9 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({ buttonType, current
   )
 }
 
-const displayLength = 7
-const threePointLeader = 0
-
 export const Pagination: React.FC<PaginationProps> = ({ total, lengthPerPage, onChange }) => {
-  const [currentPage, dispatchCurrentPage] = React.useReducer(paginationReducer, 1)
   const pageLength = calcPageLength(total, lengthPerPage)
-  const [selectableIndex, setSelectableIndex] = React.useState<number[]>([...range(1, displayLength + 1), pageLength])
-  React.useEffect(() => {
-    onChange(currentPage)
-    if (currentPage < displayLength) {
-      setSelectableIndex([...range(1, displayLength + 1), threePointLeader, pageLength])
-    } else if (currentPage >= displayLength && currentPage <= pageLength - displayLength + 1) {
-      setSelectableIndex([1, threePointLeader, ...range(currentPage - 2, currentPage + displayLength - 4), threePointLeader, pageLength])
-    } else if (currentPage >= pageLength - displayLength + 1) {
-      setSelectableIndex([1, threePointLeader, ...range(pageLength - displayLength + 1, pageLength + 1)])
-    }
-  }, [currentPage, onChange])
+  const { currentPage, dispatchCurrentPage, selectableIndex } = usePagination(onChange, pageLength)
   if (pageLength === 0) {
     return <></>
   }
