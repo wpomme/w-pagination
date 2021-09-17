@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { render, screen } from "@testing-library/react"
+import { render } from "@testing-library/react"
 
 import { Pagination } from "../"
 
@@ -17,7 +17,5 @@ describe("App", () => {
         onChange={onChange}
       />
     )
-
-    screen.debug()
   })
 })

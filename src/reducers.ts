@@ -1,9 +1,10 @@
+import { Reducer } from "react"
 import { ButtonType } from "./presentation"
 
 export type PaginationReducerState = number
 export type PaginationReducerAction = { type: ButtonType, payload: PaginationReducerState}
 
-export const paginationReducer: React.Reducer<PaginationReducerState, PaginationReducerAction> = (state, action) => {
+export const paginationReducer: Reducer<PaginationReducerState, PaginationReducerAction> = (state, action) => {
   const { type, payload } = action
   if (type === "first") {
     return 1

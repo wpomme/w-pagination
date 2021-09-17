@@ -5,15 +5,15 @@ import { calcPageLength } from "./functions"
 import { threePointLeader } from "./constants"
 import { usePagination } from "./hooks"
 
+export const buttonType = ["first", "previous", "current", "next", "last", "number"] as const
+
+export type ButtonType = typeof buttonType[number]
+
 export type PaginationProps = {
   total: number
   lengthPerPage: number
   onChange: (n: number) => void
 }
-
-const buttonType = ["first", "previous", "current", "next", "last", "number"] as const
-
-export type ButtonType = typeof buttonType[number]
 
 type PaginationButtonProps = {
   buttonType: ButtonType

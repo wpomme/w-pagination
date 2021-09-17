@@ -1,4 +1,4 @@
-import React, { useState, useReducer, Dispatch } from "react"
+import { useState, useReducer, useEffect, Dispatch } from "react"
 import { paginationReducer, PaginationReducerAction } from "./reducers"
 import { range } from "remeda"
 import { displayLength, threePointLeader } from "./constants"
@@ -14,7 +14,7 @@ export const usePagination = (
 } => {
   const [currentPage, dispatchCurrentPage] = useReducer(paginationReducer, 1)
   const [selectableIndex, setSelectableIndex] = useState<number[]>([...range(1, displayLength + 1), pageLength])
-  React.useEffect(() => {
+  useEffect(() => {
     onChange(currentPage)
     if (currentPage < displayLength) {
       setSelectableIndex([...range(1, displayLength + 1), threePointLeader, pageLength])
