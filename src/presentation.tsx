@@ -1,6 +1,7 @@
 import * as React from "react"
 import style from "./index.module.css"
 import { paginationReducer, PaginationReducerAction } from "./reducer"
+import { calcPageLength } from "./functions"
 import { range } from "remeda"
 
 export type PaginationProps = {
@@ -38,7 +39,7 @@ const threePointLeader = 0
 
 export const Pagination: React.FC<PaginationProps> = ({ total, lengthPerPage, onChange }) => {
   const [currentPage, dispatchCurrentPage] = React.useReducer(paginationReducer, 1)
-  const pageLength = Math.ceil(total / lengthPerPage)
+  const pageLength = calcPageLength(total, lengthPerPage)
   const [selectableIndex, setSelectableIndex] = React.useState<number[]>([...range(1, displayLength + 1), pageLength])
   React.useEffect(() => {
     onChange(currentPage)
