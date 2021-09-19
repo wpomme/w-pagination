@@ -2,10 +2,11 @@ import { Reducer } from "react"
 import { ButtonType } from "./constants"
 
 export type PaginationReducerState = number
-export type PaginationReducerAction = { type: ButtonType, payload: PaginationReducerState}
+export type PaginationReducerAction = { type: ButtonType, payload: { pageNumber: number, pageLength: number }}
 
 export const paginationReducer: Reducer<PaginationReducerState, PaginationReducerAction> = (state, action) => {
   const { type, payload } = action
+  const { pageNumber, pageLength } = payload
   if (type === "first") {
     return 1
   }
@@ -13,12 +14,12 @@ export const paginationReducer: Reducer<PaginationReducerState, PaginationReduce
     return state === 1 ? 1 : state - 1
   }
   if (type === "next") {
-    return state === payload ? payload : state + 1
+    return state === pageLength ? pageLength : state + 1
   }
   if (type === "number") {
-    return payload
+    return pageNumber
   }
   // type === 'last'
-  return payload
+  return pageLength
 }
 

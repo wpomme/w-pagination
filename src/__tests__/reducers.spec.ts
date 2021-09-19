@@ -5,14 +5,14 @@ describe("test paginationReducer", () => {
     const prevState = 4
     const buttonType = "first"
     const pageLength = 100
-    const returnValue = paginationReducer(prevState, { type: buttonType, payload: pageLength })
+    const returnValue = paginationReducer(prevState, { type: buttonType, payload: { pageNumber: 1, pageLength: pageLength }})
     expect(returnValue).toBe(1)
   })
   it("paginationReducer returns pageLength when buttonType is \"last\"", () => {
     const prevState = 4
     const buttonType = "last"
     const pageLength = 100
-    const returnValue = paginationReducer(prevState, { type: buttonType, payload: pageLength })
+    const returnValue = paginationReducer(prevState, { type: buttonType, payload: { pageNumber: pageLength, pageLength }})
     expect(returnValue).toBe(pageLength)
   })
 })

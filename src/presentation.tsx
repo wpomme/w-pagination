@@ -13,7 +13,7 @@ export type PaginationProps = {
 
 type PaginationButtonProps = {
   buttonType: ButtonType
-  payload: number
+  pageNumber: number
   selectableIndex: SelectableIndex,
   pageLength: number,
   currentPage: number,
@@ -22,7 +22,7 @@ type PaginationButtonProps = {
 
 const PaginationButton: React.FC<PaginationButtonProps> = ({
   buttonType,
-  payload,
+  pageNumber,
   selectableIndex,
   pageLength,
   currentPage,
@@ -33,12 +33,12 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({
     <button
       className={style["button"]}
       onClick={() => {
-        dispatchCurrentPage({type: buttonType, payload: payload})
+        dispatchCurrentPage({type: buttonType, payload: { pageNumber: pageNumber, pageLength: pageLength }})
       }}
       disabled={isDisabledButton(selectableIndex, currentPage, pageLength)}
       {...props}
     >
-      {buttonType === "number" ? payload : buttonType !== "threePointLeader" ? buttonType : "..."}
+      {buttonType === "number" ? pageNumber : buttonType !== "threePointLeader" ? buttonType : "..."}
     </button>
   )
 }
@@ -56,7 +56,7 @@ export const Pagination: React.FC<PaginationProps> = ({ total, lengthPerPage, on
           <li key={`${element.buttonType}-${index}`} className={style["li"]}>
             <PaginationButton
               buttonType={element.buttonType}
-              payload={element.index == null ? 0 : element.index}
+              pageNumber={element.index == null ? 0 : element.index}
               pageLength={pageLength}
               currentPage={currentPage}
               selectableIndex={element}
