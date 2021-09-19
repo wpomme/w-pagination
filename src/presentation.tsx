@@ -20,6 +20,14 @@ type PaginationButtonProps = {
   dispatchCurrentPage: React.Dispatch<PaginationReducerAction>
 } & React.ButtonHTMLAttributes<HTMLButtonElement>
 
+const buttonText: { [k: string]: string } = {
+  first: "≪",
+  previous: "<",
+  next: ">",
+  last: "≫",
+  threePointLeader: "...",
+}
+
 const PaginationButton: React.FC<PaginationButtonProps> = ({
   buttonType,
   pageNumber,
@@ -38,7 +46,7 @@ const PaginationButton: React.FC<PaginationButtonProps> = ({
       disabled={isDisabledButton(selectableIndex, currentPage, pageLength)}
       {...props}
     >
-      {buttonType === "number" ? pageNumber : buttonType !== "threePointLeader" ? buttonType : "..."}
+      {buttonType === "number" ? pageNumber : buttonText[buttonType]}
     </button>
   )
 }
