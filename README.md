@@ -1,9 +1,16 @@
 ## 開発環境セットアップ
-### storybook
 ```
-yarn run storybook
+yarn serve
 ```
-### nextjs
+
+## テスト
 ```
-yarn run next
+yarn test
 ```
+
+#### キャッシュをクリアする場合
+```
+yarn run test --clearCache
+```
+
+## 本番環境
