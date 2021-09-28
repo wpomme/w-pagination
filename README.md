@@ -17,3 +17,6 @@ yarn run test --clearCache
 ```
 yarn deploy
 ```
+
+## github pages URL
+[github pages here](https://wpomme.github.io/w-pagination/)
