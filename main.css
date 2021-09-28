@@ -1,0 +1,21 @@
+.ckrcDepBn_wRUqR2_qiR {
+  display: flex;
+  list-style: none;
+}
+
+.ckrcDepBn_wRUqR2_qiR > ._kTVH61t9zjIRRfrL0s5 {
+  margin: 0 4px;
+}
+
+.KHuYyXGc2oCFq6Dkfike {
+  background-color: white;
+  padding: 2px 4px;
+  border: 1px solid #444;
+  cursor: pointer;
+}
+
+.KHuYyXGc2oCFq6Dkfike:disabled {
+  border: none;
+  cursor: default;
+}
+
