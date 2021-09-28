@@ -1,6 +1,6 @@
 {
-  "name": "w-pagination",
-  "version": "1.0.0",
+  "name": "wpomme-pagination",
+  "version": "0.0.1",
   "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
