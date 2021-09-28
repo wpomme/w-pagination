@@ -13,4 +13,7 @@ yarn test
 yarn run test --clearCache
 ```
 
-## 本番環境
+## github pagesへデプロイ
+```
+yarn deploy
+```
